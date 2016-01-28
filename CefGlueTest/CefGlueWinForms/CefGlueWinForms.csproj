@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1B3EE2A-1F50-441B-859B-F1BC260D8592}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CefGlueWinForms</RootNamespace>
+    <AssemblyName>CefGlueWinForms</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>15f89aa8</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xilium.CefGlue, Version=3.2272.2035.0, Culture=neutral, PublicKeyToken=6235298024de30d5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.CefGlue.Core.3.2272.2035\lib\Xilium.CefGlue.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xilium.CefGlue.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6235298024de30d5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.CefGlue.WindowsForm.3.2272.2035\lib\Xilium.CefGlue.WindowsForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EmbeddedBrowser\CefLifeCycle.cs" />
+    <Compile Include="EmbeddedBrowser\CefQuickInitializer.cs" />
+    <Compile Include="EmbeddedBrowser\EmbeddedBrowserCore.cs" />
+    <Compile Include="EmbeddedBrowser\EmbeddedBrowserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbeddedBrowser\EmbeddedBrowserForm.Designer.cs">
+      <DependentUpon>EmbeddedBrowserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedBrowser\EmbeddedBrowserWinForms.cs" />
+    <Compile Include="EmbeddedBrowser\EmbeddedCefBrowserControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EmbeddedBrowser\Events\AddressChangedEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\BeforePopupEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\ConsoleMessageEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\LoadEndEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\LoadErrorEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\LoadingStateChangeEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\LoadStartEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\PluginCrashedEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\RenderProcessTerminatedEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\StatusMessageEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\TitleChangedEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\Events\TooltipEventArgs.cs" />
+    <Compile Include="EmbeddedBrowser\IEmbeddedBrowserControl.cs" />
+    <Compile Include="EmbeddedBrowser\Native\NativeMethods.cs" />
+    <Compile Include="EmbeddedBrowser\Native\SetWindowsPosFlags.cs" />
+    <Compile Include="EmbeddedBrowser\MyCefClient.cs" />
+    <Compile Include="EmbeddedBrowser\MyDisplayHandler.cs" />
+    <Compile Include="EmbeddedBrowser\MyLifeSpanHandler.cs" />
+    <Compile Include="EmbeddedBrowser\MyLoadHandler.cs" />
+    <Compile Include="MyCefApp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Unofficial.Cef.3.2272.2035\build\Unofficial.Cef.targets" Condition="Exists('..\packages\Unofficial.Cef.3.2272.2035\build\Unofficial.Cef.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Unofficial.Cef.3.2272.2035\build\Unofficial.Cef.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Unofficial.Cef.3.2272.2035\build\Unofficial.Cef.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
